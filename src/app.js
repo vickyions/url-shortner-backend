@@ -6,5 +6,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+app.get("/", (_, res) => res.send("<h1>Hello</h1>"));
 
 module.exports = app;
