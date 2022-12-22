@@ -18,6 +18,8 @@ app.get("/:shortStr", async (req, res) => {
         //look for the shortStr
         const result = await URLModel.findOne({url : shortStr});
         if (result) {
+            //increase click count
+            await URLModel.findByIdAndUpdate(result._id, { $inc: {clicks: 1}});
            //do a permanent redirect 301 with new location as origUrl 
             res.redirect(301, result.origUrl);
         } else {
